@@ -11,18 +11,15 @@ img = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
-def img2ascii(img):
+def img2ascii(img, black= '#' , white= '.'):
     result = ''
-    
-    for x in len(img):
-        print(x)
-        for y in len(img):
-            print(y)
-            if int(img[x][y]) == 1:
-                result += '#'
-            else: 
-                result += '.'
+    for x in range(len(img)):
+        coordin = [black for y in img[x] if img[x][y] == 1]
+        print(coordin)
+        result += '\n'
+    return result 
 
-    return result
 
-print(img2ascii(img))
+ascii = img2ascii(img, 'O', ' ')
+print(repr(ascii))
+print(ascii)

@@ -1,4 +1,4 @@
-"""img = [
+img = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 1, 1, 0, 0, 0, 0, 1, 1, 0],
@@ -9,35 +9,17 @@
     [0, 1, 1, 0, 0, 0, 0, 1, 1, 0],
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-])
-img2ascii(img)
-'..........\n..######..\n.##....##.\n.#......#.\n.#......#.\n.#......#.\n.#......#.\n.##....##.\n..######..\n..........'
- print(img2ascii(img))
-..........
-..######..
-.##....##.
-.#......#.
-.#......#.
-.#......#.
-.#......#.
-.##....##.
-..######..
-..........
->>> print(img2ascii(img, 'O', ' '))
-  000000
- 00    00
- 0      0
- 0      0
- 0      0
- 0      0
- 00    00
-  000000
+]
 
-    ...
-    ..."""
+def img2ascii(img, black= '#' , white= '.'):
+    result = ''
+    for x in img:
+        coordin = [black if y == 1 else white for y in x]   
+        print(coordin) 
+        result = ''.join(coordin[0])  
+    return result 
 
-#if __name__ == '__main__':
-  #import doctest
-  #doctest.testmod()
 
-print(__name__)
+ascii = img2ascii(img, 'O', '.')
+print(repr(ascii))
+print(ascii)
