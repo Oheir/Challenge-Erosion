@@ -13,10 +13,8 @@ img = [
 
 def img2ascii(img, black= '#' , white= '.'):
     result = []
-    for x in img:
-        coordin = [black if y == 1 else white for y in x]   
-        print(coordin) 
-        result.append(''.join([black if y == 1 else white for y in x]))
+    for row in img:  
+        result.append(''.join([black if color_value == 1 else white for color_value in row]))
     return '\n'.join(result) 
 
 
