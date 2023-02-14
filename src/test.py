@@ -1,6 +1,6 @@
 import unittest
 
-from utils import img2ascii
+from Problème_1 import img2ascii, load
 
 img = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -30,5 +30,13 @@ class MyTests(unittest.TestCase):
             result = img2ascii(img, black, white)
             self.assertEqual(result, expected)
 
+class TestLoadPBM(unittest.TestCase):
+    
+    def test_1(self):
+        for filename, expected in tests:
+            path = f''
+            result = load_pbm()
+            feedback = f"Le fichier filename={filename} est chargé correctement"
+            self.assertEqual(result, expected, feedback)
 if __name__ == '__main__':
     unittest.main()

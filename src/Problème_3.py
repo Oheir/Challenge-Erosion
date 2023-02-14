@@ -1,43 +1,39 @@
 img = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-    [0, 1, 1, 0, 0, 0, 0, 1, 1, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 1, 0, 0, 0, 0, 1, 1, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+        [0, 1, 1, 1, 1, 0, 0, 1, 1, 0],
+        [0, 1, 1, 1, 0, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 0, 0, 0, 1, 1, 0],
+        [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
 
 def erosion(img, n):
-    position_to_know = [(-1,0),(1,0),(0,-1),(0,1)]
-    for i in range(n):
-        positive_value = []
-        result = []
-        y = 0
-        for x in img:
-            print(img[y-1])
-            print(len(img))
-            print(y)
-            for i in range(len(x)):
-                if x[i] == 1:
-                    
-                    if y + 1 > len(x):
-                        x[i] = 0
-                    if img[y-1][i] or img[y+1][i] == 0:
-                        x[i] = 0
-            for i in range(len(x)):
-                if x[i] == 1:
-                    if x[i-1] or x[i+1] == 0:
-                        x[i] = 0 
-            if y +1  != len(img) :
-                y += 1
-            else: 
-                for i in range(len(x)):
-                    x[i] = 0
     result = []
+    coordine_a_enlever_x = []
+    coordine_a_enlever_y = []
+
+    for number_of_tries in range(n):
+        for line in range(len(img[0])):
+            img[0][line] = 0
+            img[-1][line] = 0
+        for coordone_x in range(len(img)):
+            for coordone_y in range(len(img[0])):
+                if coordone_y + 1 < len(img[0])  and coordone_x + 1 < len(img) and coordone_x > 0 and coordone_y > 0:
+
+                    if img[coordone_x][coordone_y - 1] == 0 or img[coordone_x-1][coordone_y] == 0 or img[coordone_x + 1][coordone_y] == 0 or img[coordone_x][coordone_y + 1] == 0:
+                        coordine_a_enlever_x.append(coordone_x)
+                        coordine_a_enlever_y.append(coordone_y)
+                    else: 
+                        img[coordone_x][coordone_y] = 1
+                else:
+                    img[coordone_x][coordone_y] = 0
+        for number in range(len(coordine_a_enlever_x)):
+            img[coordine_a_enlever_x[number]][coordine_a_enlever_y[number]] = 0
+
     for row in img:  
         result.append(''.join(['#' if color_value == 1 else '.' for color_value in row]))
     return '\n'.join(result) 
